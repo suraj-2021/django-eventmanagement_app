@@ -4,7 +4,7 @@ from calendar import HTMLCalendar
 from datetime import datetime
 # Create your views here.
 
-def home(request, year, month):
+def home(request, year= datetime.now().year, month = datetime.now().strftime("%B")):
     name = "Suraj"
     month= month.title()
     # Create a custom list of month names starting from January at index 1
@@ -23,16 +23,16 @@ def home(request, year, month):
     #Get Current Year
 
     now = datetime.now()
-    current_year = now.year
+    current_day = now.day
 
     #Get Current Time
     time = now.strftime('%I:%M:%S %p')
 
-    return render(request, 'home.html', {'name': name,
+    return render(request, 'events/home.html', {'name': name,
                                          'year': year,
                                          'month': month,
                                          'month_number': month_number,
                                          'cal':cal,
-                                         'current_year': current_year,
+                                         'current_day': current_day,
                                          'time':time,
                                          })
