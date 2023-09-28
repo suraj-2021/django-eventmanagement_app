@@ -2,7 +2,16 @@
 {%block content%}
 <center><h1>Venue: </h1>
    
-    {{venue}}
+    <h1>{{venue}}</h1>
+    Address: {{venue.address}} <br/>
+    Zip Code: {{venue.zip_code}} <br/>
+   Phone Number:  {{venue.phone}} <br/>
+   {%if email_address in venue%}
+       Email Address: {{venue.email_ddress}} <br/>
+    {%else%}
+       No Email Given <br/>
+    {%endif%}
+    <a href = "{{venue.web}}" > {{venue.web}}</a> <br/>
 
     
 </center>
