@@ -1,8 +1,15 @@
 {%extends 'events/base.html'%}
 {%block content%}
 <center>
-    <h1> Your Searched For...</h1>
-
+    {%if searched%}
+    <h1> Your Searched For "{{searched}}"</h1>
+    <br/>
+     {%for venue in venues%}
+    <a href = "{%url 'show-venue' venue.id%}"> {{venue}} - {{venue.web}} </a> <br/> 
+     {%endfor%}
+    {%else%}
+     <h1>Hey! you didn't searched anything</h1>
+    {%endif%}
 </center>
 
 {%endblock%}
