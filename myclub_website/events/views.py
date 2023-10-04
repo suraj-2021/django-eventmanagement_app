@@ -6,6 +6,9 @@ from django.http import HttpResponseRedirect
 from .models import Event, Venue
 from.forms import VenueForm
 # Create your views here.
+def update_venue(request):
+   return render (request, 'events\update_venue.html', {})
+
 
 def search_venues(request):
     if request.method == "POST":
