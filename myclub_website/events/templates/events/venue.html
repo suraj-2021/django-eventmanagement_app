@@ -5,9 +5,10 @@
     <h1>Venues....</h1>
     <br/>
     {%for venue in venue_list%}
-    
-    <a href = "{%url 'show-venue' venue.id %}">{{venue}} </a> <br/> <br/> 
-     
+    <li>
+    <a href = "{%url 'show-venue' venue.id %}">{{venue}}</a> <br/> <br/> 
+      <a href = "{%url 'update-venue' venue.id %}">-Update </a>
+    </li> 
     
     {%endfor%}
     
