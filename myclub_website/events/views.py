@@ -8,7 +8,7 @@ from.forms import VenueForm
 # Create your views here.
 def update_venue(request, venue_id):
     venue = Venue.objects.get(pk=venue_id)
-    form = VenueForm(request.POST or None)
+    form = VenueForm(request.POST or None, instance = venue)
     return render (request, 'events/update_venue.html',{'venue': venue, 'form' : form} )
 
 
