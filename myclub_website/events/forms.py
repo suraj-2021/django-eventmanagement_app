@@ -12,6 +12,7 @@ class EventForm(ModelForm):
 			'name': '',
 			'event_date': 'YYYY-MM-DD HH:MM:SS',
 			'venue': 'Venue',
+			''
 			'attendees': 'Attendees',
 			'description': '',			
 		}
@@ -19,7 +20,7 @@ class EventForm(ModelForm):
 			'name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Event Name'}),
 			'event_date': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Event Date'}),
 			'venue': forms.Select(attrs={'class':'form-select', 'placeholder':'Venue'}),
-			'attendees': forms.SelectMultiple(attrs={'class':'form-control', 'placeholder':'Attendees'}),
+			'attendees': forms.SelectMultiple(attrs={'class':'form-select', 'placeholder':'Attendees'}),
 			'description': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Description'}),
 		}
 
