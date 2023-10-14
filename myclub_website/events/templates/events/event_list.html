@@ -10,17 +10,17 @@
     <li>Date: {{event.event_date}}</li>
     <li>Venue: {{event.venue}}</li>
     <li>Manager: {{event.manager}}</li>
-    <li>Description:{{event.description}}</li>
+    <li> Description:{{event.description}} </li>
        {%for user in event.attendees.all%}
          <li>Attendees:
           {{user}}
       {%endfor%}
       </li>
       <li>
-      <a href = "{%url 'update-event' event.id %}"> Update </a>
+      <a href = "{% url 'update-event' event.id %}"> Update </a>
     </li>
     <li>
-      <a href = "{%url 'delete-event' event.id %}"> Delete </a>
+      <a href = "{% url 'delete-event' event.id %}"> Delete </a>
     </li>
   </ul>
 {%endfor%}

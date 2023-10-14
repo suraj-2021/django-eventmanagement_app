@@ -10,7 +10,8 @@ from.forms import VenueForm, EventForm
 def delete_event(request, event_id):
    event = Event.objects.get(pk=event_id)
    event.delete()
-   return redirect('list-events')
+   return render(request, 'events/add_event.html', {'event': event})
+   #return redirect('all-events')
 
 
 def update_event(request, event_id):
