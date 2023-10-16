@@ -1,0 +1,18 @@
+{%extends 'events/base.html'%}
+{%block content%}
+<center>
+    
+    <h1>Venues....</h1>
+    <br/>
+    {%for venue in venue_list%}
+    <li>
+    <a href = "{%url 'show-venue' venue.id %}">{{venue}}</a>
+      <a href = "{%url 'update-venue' venue.id %}" class = "btn btn-outline-secondary btn-sm"> -Update </a>
+      <br/> <br/> 
+    </li> 
+    
+    {%endfor%}
+    
+</center>
+
+{%endblock%}
