@@ -6,7 +6,33 @@ from django.http import HttpResponseRedirect
 from .models import Event, Venue
 from.forms import VenueForm, EventForm
 from django.http import HttpResponse
+import csv
 # Create your views here.
+
+def venue_csv(request):
+    response = HttpResponse(content_type ='text/csv')
+    response['Content-Disposition'] = 'attachment; finename = venues.csv'
+    
+    #create a csv writer
+    writer = csv.writer(response)
+
+    #designate the model
+    venues = Venue.objects.all()
+
+
+    #loop through and output
+    for venue in venues:
+        lines.append(f'{venue.name}\n {venue.address}\n {venue.phone}\n {venue.email_address}\n')
+
+               
+
+    response.writelines(lines)
+    return  response
+
+
+
+
+
 def venue_text (request):
     response = HttpResponse(content_type ='text/plain')
     response['Content-Disposition'] = 'attachment; finename = venues.txt'
