@@ -15,7 +15,7 @@ def venue_csv(request):
     
     #create a csv writer
     writer = csv.writer(response)
-
+    lines = [ ]
     #designate the model
     venues = Venue.objects.all()
 

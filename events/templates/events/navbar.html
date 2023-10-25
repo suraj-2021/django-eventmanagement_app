@@ -34,6 +34,9 @@
             <a class="nav-link" href="{%url 'venue-text' %}"> Venue text file</a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'venue-csv' %}"> Venue CSV file</a>
+          </li>
         </ul>
         <form class="d-flex" method = POST action = "{%url 'search-venues'%}">
             {%csrf_token%}
