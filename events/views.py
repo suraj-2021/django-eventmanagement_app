@@ -15,10 +15,12 @@ def venue_csv(request):
     
     #create a csv writer
     writer = csv.writer(response)
+
     lines = [ ]
     #designate the model
     venues = Venue.objects.all()
-
+    
+    writer.writerow(['Venue Name', 'Address', 'Zip Code', 'Phone', 'Web Address', 'Emai Address' ])
 
     #loop through and output
     for venue in venues:
