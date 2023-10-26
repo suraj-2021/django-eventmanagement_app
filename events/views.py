@@ -7,6 +7,54 @@ from .models import Event, Venue
 from.forms import VenueForm, EventForm
 from django.http import HttpResponse
 import csv
+
+
+from django.http import FileResponse
+import io
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import inch
+from reportlab.lib.pagesizes import letter
+
+def venue_pdf(request):
+    #Create a ByteStream buffer
+    buf = io.BytesIO()
+    #Create a Canvas
+    c = canvas.Canvas(buf, pagesize = letter, bottomup = 0 )
+    #Create a text object
+    textob = c.beginText()
+    textob.setTextOrigin(inch, inch)
+    textob.setFont("Helventica",14)
+
+    # Add some lines of text
+
+    lines = [
+       
+       "This is line 1",
+       "This is line 2",
+       "This is line 3",
+    ]
+
+    #Loop 
+    for line in lines:
+       textob.textLine(line)
+
+       # Finish Up
+       c.drawText(textob)
+       c.showPage()
+       c.save()
+       buf.seek(0)
+
+
+     #return something
+     
+    return FileResponse(buf, as_attachment = True, filename = 'venue.pdf')
+
+
+
+
+    
+    
+
 # Create your views here.
 
 def venue_csv(request):
