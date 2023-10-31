@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from .models import Event, Venue
 from.forms import VenueForm, EventForm
 from django.http import HttpResponse
-import csv
+import csv                  
 
 
 from django.http import FileResponse
@@ -16,38 +16,35 @@ from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
 
 def venue_pdf(request):
-    #Create a ByteStream buffer
+    # Create a ByteStream buffer
     buf = io.BytesIO()
-    #Create a Canvas
-    c = canvas.Canvas(buf, pagesize = letter, bottomup = 0 )
-    #Create a text object
+    # Create a Canvas
+    c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
+    # Create a text object
     textob = c.beginText()
     textob.setTextOrigin(inch, inch)
-    textob.setFont("Helventica",14)
+    textob.setFont("Helvetica", 14)
 
     # Add some lines of text
-
     lines = [
-       
-       "This is line 1",
-       "This is line 2",
-       "This is line 3",
+        "This is line 1",
+        "This is line 2",
+        "This is line 3",
     ]
 
-    #Loop 
+    # Loop
     for line in lines:
-       textob.textLine(line)
+        textob.textLine(line)
 
-       # Finish Up
-       c.drawText(textob)
-       c.showPage()
-       c.save()
-       buf.seek(0)
+    # Finish Up
+    c.drawText(textob)
+    c.showPage()
+    c.save()
+    buf.seek(0)
 
+    # Return the PDF as a response
+    return FileResponse(buf, as_attachment=True, filename='venue.pdf')
 
-     #return something
-     
-    return FileResponse(buf, as_attachment = True, filename = 'venue.pdf')
 
 
 
