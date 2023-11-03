@@ -15,6 +15,10 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
 
+from django.core.paginator import Paginator
+
+
+
 def venue_pdf(request):
     # Create a ByteStream buffer
     buf = io.BytesIO()
@@ -26,11 +30,22 @@ def venue_pdf(request):
     textob.setFont("Helvetica", 14)
 
     # Add some lines of text
-    lines = [
-        "This is line 1",
-        "This is line 2",
-        "This is line 3",
-    ]
+   # lines = [
+      #  "This is line 1",
+       # "This is line 2",
+       # "This is line 3",
+    #]
+
+    venues = Venue.objects.all()
+
+    lines = []
+
+    for venue in venues:
+        lines.append(venue.name)
+        lines.append(venue.address)
+        lines.append(venue.zipcode)
+        lines.append(venue.name)
+        lines.append(venue.web)
 
     # Loop
     for line in lines:
@@ -44,13 +59,6 @@ def venue_pdf(request):
 
     # Return the PDF as a response
     return FileResponse(buf, as_attachment=True, filename='venue.pdf')
-
-
-
-
-
-    
-    
 
 # Create your views here.
 
@@ -163,8 +171,15 @@ def show_venue(request, venue_id):
 
 
 def list_venues(request):
-   venue_list = Venue.objects.all().order_by('name')
-   return render(request, 'events/venue.html', {'venue_list':venue_list})
+   #venue_list = Venue.objects.all().order_by('name')
+   venue_list = Venue.objects.all()
+
+   p = Paginator(Venue.objects.all(), 2)
+   page = request.GET.get('page')
+
+   venues = p.get_page(page)
+
+   return render(request, 'events/venue.html', {'venue_list':venue_list, 'venues':venues})
 
 def add_venue(request):
     submitted = False
