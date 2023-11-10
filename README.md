@@ -5,3 +5,4 @@ Also added Delete option to delete data from database.
 Ordered Database items from their name.
 Added PDF,TXT and CSV download option.
 Pagination will also be added soon, While making the interface more user friendly.
+Login and Logout System are curcial, and I'm working to add them.
