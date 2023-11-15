@@ -6,3 +6,4 @@ Ordered Database items from their name.
 Added PDF,TXT and CSV download option.
 Pagination will also be added soon, While making the interface more user friendly.
 Login and Logout System are curcial, and I'm working to add them.
+Working on adding more features to my event_management_app including authentication system.
